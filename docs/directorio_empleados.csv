@@ -1,0 +1,13 @@
+ID_Empleado,Nombre,Apellido,Departamento,Rol,Fecha_Ingreso,Ubicacion,Email
+EMP-001,Laura,Gomez,Ingenieria,Staff Engineer,2021-03-15,Buenos Aires,laura.gomez@dadacode.io
+EMP-002,Carlos,Rodriguez,Ingenieria,Backend Developer,2022-08-01,Buenos Aires,carlos.rodriguez@dadacode.io
+EMP-003,Ana,Martinez,Producto,Product Manager,2021-11-20,Ciudad de Mexico,ana.martinez@dadacode.io
+EMP-004,David,Chen,Infraestructura,DevOps Engineer,2023-01-10,Remoto (USA),david.chen@dadacode.io
+EMP-005,Sofia,Lopez,Ingenieria,Frontend Developer,2023-05-12,Bogota,sofia.lopez@dadacode.io
+EMP-006,Javier,Fernandez,Soporte,IT Support Specialist,2022-02-18,Madrid,javier.fernandez@dadacode.io
+EMP-007,Elena,Silva,Recursos Humanos,HR Business Partner,2020-09-01,Buenos Aires,elena.silva@dadacode.io
+EMP-008,Martin,Herrera,Ingenieria,Engineering Manager,2019-12-05,Santiago,martin.herrera@dadacode.io
+EMP-009,Valeria,Rios,Ventas,Account Executive,2022-10-30,Ciudad de Mexico,valeria.rios@dadacode.io
+EMP-010,Jorge,Perez,Seguridad,Security Analyst,2023-08-15,Lima,jorge.perez@dadacode.io
+EMP-011,Camila,Soto,Producto,UX/UI Designer,2024-01-20,Buenos Aires,camila.soto@dadacode.io
+EMP-012,Miguel,Torres,Datos,Data Engineer,2022-05-03,Bogota,miguel.torres@dadacode.io

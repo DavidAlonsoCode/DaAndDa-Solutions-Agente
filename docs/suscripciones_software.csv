@@ -1,0 +1,11 @@
+ID_Software,Nombre_Servicio,Categoria,Proveedor,Costo_Mensual_USD,Usuarios_Activos,Renovacion,Propietario_Interno
+SW-001,GitHub Enterprise,Control de Versiones,Microsoft,2500,150,2027-01-15,Martin Herrera
+SW-002,AWS Cloud,Infraestructura,Amazon Web Services,18000,-,Renovacion Automatica,David Chen
+SW-003,Datadog,Monitoreo y Observabilidad,Datadog Inc,3200,45,2026-11-30,David Chen
+SW-004,Slack Enterprise,Comunicacion,Salesforce,1800,200,2026-10-01,Elena Silva
+SW-005,Jira & Confluence,Gestion de Proyectos,Atlassian,2100,180,2026-12-15,Ana Martinez
+SW-006,Figma Organization,Diseno UX/UI,Figma,800,25,2026-08-20,Camila Soto
+SW-007,PagerDuty,Gestion de Incidentes,PagerDuty Inc,900,40,2026-09-10,David Chen
+SW-008,Platzi for Business,Capacitacion,Platzi,1200,100,2027-02-01,Elena Silva
+SW-009,Google Workspace,Ofimatica,Google,1500,210,2026-06-15,Javier Fernandez
+SW-010,Vercel,Hosting Frontend,Vercel,400,20,2026-07-01,Sofia Lopez

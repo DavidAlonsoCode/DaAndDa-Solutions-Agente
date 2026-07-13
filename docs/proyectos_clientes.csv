@@ -1,0 +1,8 @@
+ID_Proyecto,Nombre_Proyecto,Cliente,Estado,Presupuesto_USD,Fecha_Inicio,Fecha_Fin_Estimada,Tecnologias_Principales,Squad_Asignado
+PRJ-101,Migracion Cloud,Fintech Norte,En Progreso,120000,2025-10-01,2026-06-30,AWS;Terraform;Kubernetes,CloudTitans
+PRJ-102,App Movil Retail,MegaMart SA,Completado,85000,2025-03-15,2025-12-20,React Native;Node.js,MobileNinjas
+PRJ-103,Dashboard Analiticas,Global Logistics,En Progreso,150000,2026-01-10,2026-09-15,React;Python;Snowflake,DataWizards
+PRJ-104,Sistema de Pagos B2B,PayStream,Pausado,200000,2025-08-01,2026-12-31,Java;Spring Boot;Kafka,FinCore
+PRJ-105,Portal de Pacientes,SaludPlus,En Progreso,95000,2026-02-01,2026-08-30,Vue.js;FastAPI;PostgreSQL,HealthTech
+PRJ-106,Chatbot Atencion,TelcoSur,Planificacion,45000,2026-05-01,2026-08-15,Python;OpenAI;LangChain,AIAgents
+PRJ-107,E-Commerce B2C,ModaStyle,Completado,110000,2024-11-01,2025-05-30,Next.js;Stripe;Prisma,WebMasters
