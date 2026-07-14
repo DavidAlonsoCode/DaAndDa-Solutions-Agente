@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const sendButton = document.getElementById('send-button');
 
     // Generar un ID de sesión simple
-    let sessionId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
+    let sessionId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
 
     // Cargar documentos dinámicamente en la sidebar
     async function loadDocs() {
@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
         clearBtn.addEventListener('click', () => {
             chatMessages.innerHTML = '';
             // Generar nuevo ID de sesión para empezar de cero
-            sessionId = crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
+            sessionId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
             appendMessage('system', 'Historial borrado. Iniciando nueva sesión.');
         });
     }
