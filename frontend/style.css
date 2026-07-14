@@ -573,3 +573,107 @@ body {
 .csv-error {
     color: #ef4444;
 }
+
+/* --- Nuevas Clases para Header y Responsive --- */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.hidden-desktop {
+    display: none;
+}
+
+.mobile-menu-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+
+.mobile-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 90;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* --- Media Queries para Móviles --- */
+@media (max-width: 768px) {
+    .hidden-desktop {
+        display: flex;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: -320px;
+        height: 100vh;
+        z-index: 100;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+        transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        width: 280px;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .chat-header {
+        padding: 16px 20px;
+    }
+
+    .header-info h1 {
+        font-size: 16px;
+    }
+
+    .header-info p {
+        display: none; /* Ocultar subtítulo en móvil para ahorrar espacio */
+    }
+
+    .chat-messages {
+        padding: 20px;
+    }
+
+    .message {
+        max-width: 95%; /* Ocupar casi todo el ancho en móvil */
+    }
+
+    .chat-input-container {
+        padding: 16px 20px;
+    }
+
+    #clear-chat-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .modal-card {
+        width: 95%;
+        height: 90vh;
+    }
+}

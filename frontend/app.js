@@ -2,8 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
     const chatMessages = document.getElementById('chat-messages');
+    const docsList = document.getElementById('docs-list');
     const sendButton = document.getElementById('send-button');
+    const clearChatBtn = document.getElementById('clear-chat-btn');
+    
+    // Elementos del Modal
+    const docModal = document.getElementById('doc-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
 
+    // Elementos del Sidebar Responsivo
+    const sidebar = document.getElementById('sidebar');
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const sidebarOverlay = document.getElementById('sidebar-overlay');
+    
     // Generar un ID de sesión simple
     let sessionId = typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : Math.random().toString(36).substring(2);
 
@@ -100,14 +113,15 @@ document.addEventListener('DOMContentLoaded', () => {
             appendMessage('system', 'Historial borrado. Iniciando nueva sesión.');
         });
     }
-    // Elementos del Modal
-    const docModal = document.getElementById('doc-modal');
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
 
     // Función para abrir la previsualización
     function openDocPreview(filename) {
+        // Cerrar sidebar si está en móvil
+        if (sidebar && sidebarOverlay) {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.add('hidden');
+        }
+
         modalTitle.textContent = filename;
         modalBody.innerHTML = '<div class="csv-loading">Cargando...</div>';
         docModal.classList.remove('hidden');
@@ -171,6 +185,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 docModal.classList.add('hidden');
                 setTimeout(() => { modalBody.innerHTML = ''; }, 300);
             }
+        });
+    }
+
+    // Lógica para el menú responsivo (Móvil)
+    if (mobileMenuBtn && sidebar && sidebarOverlay) {
+        mobileMenuBtn.addEventListener('click', () => {
+            sidebar.classList.add('open');
+            sidebarOverlay.classList.remove('hidden');
+        });
+
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.add('hidden');
         });
     }
 
