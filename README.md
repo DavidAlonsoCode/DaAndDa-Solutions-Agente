@@ -102,10 +102,10 @@ A continuación se presentan capturas de pantalla que demuestran el funcionamien
 ### Despliegue en la Nube (Render)
 A continuación se demuestra la aplicación funcionando en vivo tras su despliegue exitoso en Render:
 
-![Despliegue Render 1](images/Render1.png)
-![Despliegue Render 2](images/Render2.png)
-![Despliegue Render 3](images/Render3.png)
-![Logs de Render](images/Render4.png)
+![Despliegue Render 1](images/Render1.PNG)
+![Despliegue Render 2](images/Render2.PNG)
+![Despliegue Render 3](images/Render3.PNG)
+![Logs de Render](images/Render4.PNG)
 
 ---
 *Desarrollado para el Challenge de Alura - Formación en Inteligencia Artificial.*
