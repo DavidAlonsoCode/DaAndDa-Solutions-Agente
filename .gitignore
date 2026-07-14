@@ -29,7 +29,7 @@ ENV/
 .env.*
 !.env.example
 
-# Datos e índices generados (Opcional, pero se suele omitir si el índice es grande)
-faiss_index/
+# Datos e índices generados (Se comenta faiss_index para que suba al repo y Render lo tenga disponible)
+# faiss_index/
 
 chat_history.db
