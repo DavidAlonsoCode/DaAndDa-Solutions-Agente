@@ -21,6 +21,9 @@ app.add_middleware(
 # Servir archivos estáticos del frontend
 app.mount("/static", StaticFiles(directory="frontend"), name="static")
 
+# Servir archivos estáticos de documentos para la vista previa
+app.mount("/docs_files", StaticFiles(directory="docs"), name="docs_files")
+
 # Modelo de datos para la solicitud
 class ChatRequest(BaseModel):
     message: str

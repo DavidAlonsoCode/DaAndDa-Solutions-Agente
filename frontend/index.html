@@ -67,6 +67,19 @@
                 </form>
             </div>
         </main>
+        
+        <!-- Modal para Vista Previa de Documentos -->
+        <div id="doc-modal" class="modal-overlay hidden">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h3 id="modal-title">Vista Previa</h3>
+                    <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+                </div>
+                <div id="modal-body" class="modal-body">
+                    <!-- Contenido dinámico (iframe o tabla) se inyectará aquí -->
+                </div>
+            </div>
+        </div>
     </div>
     
     <script src="/static/app.js"></script>

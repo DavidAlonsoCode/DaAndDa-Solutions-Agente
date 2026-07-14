@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     const isCsv = doc.toLowerCase().endsWith('.csv');
                     const icon = isCsv ? '📊' : '📄';
                     li.innerHTML = `<span class="icon">${icon}</span> <span class="doc-name" title="${doc}">${doc}</span>`;
+                    li.style.cursor = 'pointer';
+                    li.addEventListener('click', () => openDocPreview(doc));
                     docsList.appendChild(li);
                 });
             } else {
@@ -98,6 +100,80 @@ document.addEventListener('DOMContentLoaded', () => {
             appendMessage('system', 'Historial borrado. Iniciando nueva sesión.');
         });
     }
+    // Elementos del Modal
+    const docModal = document.getElementById('doc-modal');
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    // Función para abrir la previsualización
+    function openDocPreview(filename) {
+        modalTitle.textContent = filename;
+        modalBody.innerHTML = '<div class="csv-loading">Cargando...</div>';
+        docModal.classList.remove('hidden');
+        
+        const fileUrl = `/docs_files/${filename}`;
+        const ext = filename.toLowerCase().split('.').pop();
+        
+        if (ext === 'pdf') {
+            modalBody.innerHTML = `<iframe src="${fileUrl}" width="100%" height="100%" style="border: none;"></iframe>`;
+        } else if (ext === 'csv') {
+            fetch(fileUrl)
+                .then(res => res.text())
+                .then(text => {
+                    const rows = text.split('\n').filter(r => r.trim() !== '');
+                    if (rows.length === 0) {
+                        modalBody.innerHTML = '<div class="csv-error">El archivo CSV está vacío.</div>';
+                        return;
+                    }
+                    
+                    let html = '<div class="csv-table-wrapper"><table class="csv-preview-table">';
+                    rows.forEach((row, index) => {
+                        // Regex básico para separar por comas ignorando comas dentro de comillas
+                        const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                        
+                        if (index === 0) {
+                            html += '<tr>' + cols.map(c => `<th>${c.replace(/^"|"$/g, '').trim()}</th>`).join('') + '</tr>';
+                        } else {
+                            html += '<tr>' + cols.map(c => `<td>${c.replace(/^"|"$/g, '').trim()}</td>`).join('') + '</tr>';
+                        }
+                    });
+                    html += '</table></div>';
+                    modalBody.innerHTML = html;
+                })
+                .catch(err => {
+                    modalBody.innerHTML = '<div class="csv-error">Error al cargar el archivo CSV.</div>';
+                });
+        } else {
+             fetch(fileUrl)
+                .then(res => res.text())
+                .then(text => {
+                     modalBody.innerHTML = `<pre style="padding: 20px; font-size: 14px; color: #333; white-space: pre-wrap;">${text}</pre>`;
+                })
+                .catch(err => {
+                    modalBody.innerHTML = '<div class="csv-error">Error al cargar el archivo.</div>';
+                });
+        }
+    }
+
+    // Cerrar el modal al hacer clic en la X
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', () => {
+            docModal.classList.add('hidden');
+            setTimeout(() => { modalBody.innerHTML = ''; }, 300); // Limpiar contenido tras la animación
+        });
+    }
+
+    // Cerrar el modal al hacer clic en el fondo oscurecido
+    if (docModal) {
+        docModal.addEventListener('click', (e) => {
+            if (e.target === docModal) {
+                docModal.classList.add('hidden');
+                setTimeout(() => { modalBody.innerHTML = ''; }, 300);
+            }
+        });
+    }
+
 });
 
 let messageCounter = 0;
