@@ -80,6 +80,17 @@ python server.py
 
 ---
 
+## 🌐 Proyecto Desplegado en Vivo (Render)
+
+¡Me enorgullece contarles que este proyecto no solo funciona en mi entorno local, sino que **lo he desplegado exitosamente en la nube usando Render**! 
+
+Pueden probar el asistente de Inteligencia Artificial en vivo y en directo ingresando al siguiente enlace:
+👉 **[https://daandda-solutions-agente.onrender.com/](https://daandda-solutions-agente.onrender.com/)**
+
+> **Nota:** Como estoy utilizando el plan gratuito de Render, es posible que el servidor entre en estado de "hibernación" si nadie lo visita por 15 minutos. Si al entrar notan que el primer mensaje tarda unos 50 segundos en cargar, es completamente normal, ¡solo le está tomando un momento despertar al servidor!
+
+---
+
 ## 💬 Ejemplos de uso del agente
 
 A continuación se presentan capturas de pantalla que demuestran el funcionamiento real del agente inteligente en la interfaz, mostrando cómo analiza los documentos y responde a las consultas del usuario:
