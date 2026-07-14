@@ -11,11 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     async function loadDocs() {
         const docsList = document.getElementById('docs-list');
         if (!docsList) return;
-        
+
         try {
             const res = await fetch('/api/docs');
             const data = await res.json();
-            
+
             docsList.innerHTML = '';
             if (data.docs && data.docs.length > 0) {
                 data.docs.forEach(doc => {
@@ -34,20 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
             docsList.innerHTML = '<li style="opacity: 0.5; color: red;">Error al cargar</li>';
         }
     }
-    
+
     loadDocs();
 
     // Función para manejar el envío del formulario
     chatForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const message = chatInput.value.trim();
         if (!message) return;
 
         // Añadir mensaje del usuario a la UI
         appendMessage('user', message);
         chatInput.value = '';
-        
+
         // Mostrar indicador de carga
         const loadingId = appendMessage('bot', '<span class="loading-dots">Escribiendo...</span>', null, true);
 
@@ -58,14 +58,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ 
+                body: JSON.stringify({
                     message: message,
                     session_id: sessionId
                 })
             });
 
             const data = await response.json();
-            
+
             // Remover indicador de carga
             removeMessage(loadingId);
 
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 appendMessage('system', 'Error: ' + (data.detail || 'Hubo un problema al procesar la solicitud.'));
             }
-            
+
         } catch (error) {
             console.error('Error:', error);
             removeMessage(loadingId);
@@ -111,10 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
         modalTitle.textContent = filename;
         modalBody.innerHTML = '<div class="csv-loading">Cargando...</div>';
         docModal.classList.remove('hidden');
-        
+
         const fileUrl = `/docs_files/${filename}`;
         const ext = filename.toLowerCase().split('.').pop();
-        
+
         if (ext === 'pdf') {
             modalBody.innerHTML = `<iframe src="${fileUrl}" width="100%" height="100%" style="border: none;"></iframe>`;
         } else if (ext === 'csv') {
@@ -126,12 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         modalBody.innerHTML = '<div class="csv-error">El archivo CSV está vacío.</div>';
                         return;
                     }
-                    
+
                     let html = '<div class="csv-table-wrapper"><table class="csv-preview-table">';
                     rows.forEach((row, index) => {
                         // Regex básico para separar por comas ignorando comas dentro de comillas
                         const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
-                        
+
                         if (index === 0) {
                             html += '<tr>' + cols.map(c => `<th>${c.replace(/^"|"$/g, '').trim()}</th>`).join('') + '</tr>';
                         } else {
@@ -145,10 +145,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     modalBody.innerHTML = '<div class="csv-error">Error al cargar el archivo CSV.</div>';
                 });
         } else {
-             fetch(fileUrl)
+            fetch(fileUrl)
                 .then(res => res.text())
                 .then(text => {
-                     modalBody.innerHTML = `<pre style="padding: 20px; font-size: 14px; color: #333; white-space: pre-wrap;">${text}</pre>`;
+                    modalBody.innerHTML = `<pre style="padding: 20px; font-size: 14px; color: #333; white-space: pre-wrap;">${text}</pre>`;
                 })
                 .catch(err => {
                     modalBody.innerHTML = '<div class="csv-error">Error al cargar el archivo.</div>';
@@ -190,16 +190,16 @@ function appendMessage(sender, text, sources = null, isRawHtml = false) {
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
     messageDiv.id = 'msg-' + (messageCounter++);
-    
+
     // Configurar avatar
     const avatar = document.createElement('div');
     avatar.className = 'avatar';
     avatar.innerHTML = sender === 'user' ? '🤔' : (sender === 'system' ? '⚠️' : '🙂');
-    
+
     // Configurar contenido
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content markdown-body';
-    
+
     // Si es bot y no es raw html (como los loading dots), parsear Markdown
     if (sender === 'bot' && !isRawHtml && window.marked && window.DOMPurify) {
         contentDiv.innerHTML = DOMPurify.sanitize(marked.parse(text));
@@ -208,17 +208,17 @@ function appendMessage(sender, text, sources = null, isRawHtml = false) {
     } else {
         contentDiv.textContent = text;
     }
-    
+
     // Agregar fuentes si existen
     if (sources && sources.length > 0) {
         const sourcesContainer = document.createElement('div');
         sourcesContainer.className = 'sources-container';
-        
+
         const sourcesTitle = document.createElement('div');
         sourcesTitle.className = 'sources-title';
         sourcesTitle.textContent = 'Fuentes consultadas:';
         sourcesContainer.appendChild(sourcesTitle);
-        
+
         sources.forEach(source => {
             const badge = document.createElement('span');
             badge.className = 'source-badge';
@@ -226,17 +226,18 @@ function appendMessage(sender, text, sources = null, isRawHtml = false) {
             badge.title = source.content_snippet; // Tooltip on hover
             sourcesContainer.appendChild(badge);
         });
-        
+
         contentDiv.appendChild(sourcesContainer);
     }
-    
+
     messageDiv.appendChild(avatar);
     messageDiv.appendChild(contentDiv);
-    
+
     chatMessages.appendChild(messageDiv);
-    
+
     // Auto-scroll al final
     chatMessages.scrollTop = chatMessages.scrollHeight;
-    
+
     return messageDiv.id;
 }
+
